@@ -6,6 +6,12 @@ import { BookService } from './book/book.service';
 import { BookModule } from './book/book.module';
 import { AuthModule } from './auth/auth.module';
 import { AuthService } from './auth/auth.service';
+import { RouterModule } from '@nestjs/core';
+import path from 'path';
+
+const Routes = [
+  {path:"book",module:BookModule}
+]
 
 @Module({
   imports: [
@@ -15,7 +21,8 @@ import { AuthService } from './auth/auth.service';
     }),
     MongooseModule.forRoot(process.env.DB_URI),
     BookModule,
-    AuthModule
+    AuthModule,
+    RouterModule.register(Routes)
   ],
   // controllers: [BookController],
 })
