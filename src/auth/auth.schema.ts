@@ -1,4 +1,4 @@
-import { Prop, Schema } from "@nestjs/mongoose";
+import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 
 @Schema({
     timestamps:true
@@ -6,13 +6,15 @@ import { Prop, Schema } from "@nestjs/mongoose";
 
 export class SignUp{   
     @Prop()
-    name:String
+    name:string
+
+    @Prop({unique:[true,"Duplicate Email"]})
+    email:string
+
 
     @Prop()
-    email:String
-
-
-    @Prop()
-    Password:String
+    password:string
 
 }
+
+export const userSchema = SchemaFactory.createForClass(SignUp) 
